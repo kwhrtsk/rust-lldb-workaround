@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in library 'rust-lldb-workaround'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--lib",
+          "--package=rust-lldb-workaround"
+        ],
+        "filter": {
+          "name": "rust-lldb-workaround",
+          "kind": "lib"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      // Add this line.
+      "preLaunchTask": "symlink dSYM"
+    }
+  ]
+}
