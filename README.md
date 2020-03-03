@@ -6,7 +6,7 @@ rust-lldb problem with unit tests in a lib target.
 On macOS, when I build tests in a lib target (with cargo test --lib --no-run),
 and run LLDB on the test binary, breakpoints does not work.
 
-This problem occurs with both `rust-llvm` and VSCode with [CodeLLDB][1].
+This problem occurs with both `rust-lldb` and VSCode with [CodeLLDB][1].
 
 ## Environment
 
@@ -47,14 +47,17 @@ mod tests {
 
 rm -rf target
 bin=$(cargo test --lib --no-run --message-format=json | jq -r '.executable')
-lldb $bin <<- EOF
+rust-lldb $bin <<- EOF
 breakpoint set --name tests::it_works
 EOF
 ```
 
 ```
    Compiling rust-lldb-workaround v0.1.0 (/Users/kawahara_taisuke/.ghq/github.com/kwhrtsk/rust-lldb-workaround)
-    Finished test [unoptimized + debuginfo] target(s) in 0.61s
+    Finished test [unoptimized + debuginfo] target(s) in 0.51s
+(lldb) command script import "/Users/kawahara_taisuke/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/etc/lldb_rust_formatters.py"
+(lldb) type summary add --no-value --python-function lldb_rust_formatters.print_val -x ".*" --category Rust
+(lldb) type category enable Rust
 (lldb) target create "/Users/kawahara_taisuke/.ghq/github.com/kwhrtsk/rust-lldb-workaround/target/debug/rust_lldb_workaround-6e0ca18365abb7b9"
 Current executable set to '/Users/kawahara_taisuke/.ghq/github.com/kwhrtsk/rust-lldb-workaround/target/debug/rust_lldb_workaround-6e0ca18365abb7b9' (x86_64).
 (lldb) breakpoint set --name tests::it_works
@@ -132,14 +135,17 @@ bin=$(cargo test --lib --no-run --message-format=json | jq -r '.executable')
 # create symlink of .dSYM directory
 (cd target/debug && for d in deps/*.dSYM; do ln -sf $d ./; done)
 
-lldb $bin <<- EOF
+rust-lldb $bin <<- EOF
 breakpoint set --name tests::it_works
 EOF
 ```
 
 ```
    Compiling rust-lldb-workaround v0.1.0 (/Users/kawahara_taisuke/.ghq/github.com/kwhrtsk/rust-lldb-workaround)
-    Finished test [unoptimized + debuginfo] target(s) in 0.76s
+    Finished test [unoptimized + debuginfo] target(s) in 0.53s
+(lldb) command script import "/Users/kawahara_taisuke/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/etc/lldb_rust_formatters.py"
+(lldb) type summary add --no-value --python-function lldb_rust_formatters.print_val -x ".*" --category Rust
+(lldb) type category enable Rust
 (lldb) target create "/Users/kawahara_taisuke/.ghq/github.com/kwhrtsk/rust-lldb-workaround/target/debug/rust_lldb_workaround-6e0ca18365abb7b9"
 Current executable set to '/Users/kawahara_taisuke/.ghq/github.com/kwhrtsk/rust-lldb-workaround/target/debug/rust_lldb_workaround-6e0ca18365abb7b9' (x86_64).
 (lldb) breakpoint set --name tests::it_works
