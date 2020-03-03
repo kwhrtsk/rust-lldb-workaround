@@ -211,4 +211,7 @@ If you try to do the same with VSCode (and CodeLLDB), you get:
 * [rust-lang/rust#59907](https://github.com/rust-lang/rust/issues/59907)
 * [rust-lang/cargo#7960](https://github.com/rust-lang/cargo/issues/7960)
 
+If you are looking for Japanese translation, please see [this blog post][2].
+
 [1]: https://github.com/vadimcn/vscode-lldb
+[2]: https://chopschips.net/blog/2020/03/03/rust-lldb-workaround/
