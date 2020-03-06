@@ -1,6 +1,11 @@
 rust-lldb problem with unit tests in a lib target.
 ==================================================
 
+**[UPDATE]**
+
+This problem has already been fixed on master([rust-lang/cargo#7965][3])),
+and will be released as [Cargo 1.43][4] at 2020-04-03.
+
 ## Problem description
 
 On macOS, when I build tests in a lib target (with cargo test --lib --no-run),
@@ -215,3 +220,5 @@ If you are looking for Japanese translation, please see [this blog post][2].
 
 [1]: https://github.com/vadimcn/vscode-lldb
 [2]: https://chopschips.net/blog/2020/03/03/rust-lldb-workaround/
+[3]: https://github.com/rust-lang/cargo/pull/7965
+[4]: https://github.com/rust-lang/cargo/blob/master/CHANGELOG.md#cargo-143-2020-04-23
