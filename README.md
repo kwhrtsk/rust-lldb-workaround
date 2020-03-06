@@ -3,7 +3,7 @@ rust-lldb problem with unit tests in a lib target.
 
 **[UPDATE]**
 
-This problem has already been fixed on master([rust-lang/cargo#7965][3])),
+This problem has already been fixed on master([rust-lang/cargo#7965][3]),
 and will be released as [Cargo 1.43][4] at 2020-04-03.
 
 ## Problem description
